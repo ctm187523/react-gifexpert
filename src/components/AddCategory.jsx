@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from "prop-types";
 
 //recibimos del padre en el input del archvio GifExpertApp las propiedades en este caso la funcion 'setCategories' modificado a onNewCategory
 export const AddCategory = ({ onNewCategory }) => {
@@ -36,7 +37,8 @@ export const AddCategory = ({ onNewCategory }) => {
     return (
         // usamos el form y el input en su interior por defecto al presionar enter el form hace un full refresh
         //propaga el formulario, le pasa el evento a la funcion creada arriba on submit
-        <form onSubmit={(event) => onSubmit(event)}> {/*podriamos poner directamente onSubmit*/}
+        //el area-label="form" lo usamos para que luego en pruebas puede indentificar al formulario
+        <form onSubmit={(event) => onSubmit(event)} aria-label="form"> {/*podriamos poner directamente onSubmit*/}
             <input
                 type="text"
                 placeholder="Buscar gifs"
@@ -46,4 +48,10 @@ export const AddCategory = ({ onNewCategory }) => {
         </form>
 
     )
+}
+
+
+AddCategory.propTypes = {
+
+    onNewCategory: PropTypes.func.isRequired,
 }
